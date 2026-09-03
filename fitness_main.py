@@ -2,8 +2,33 @@
 # CSCI 471 - Python Programming Assignment: Fitness Tracker Application
 
 
-# Main menu 
-#Log an exercise 
+# Main Menu - Text-based meni that offers the following options
+
+from datetime import date
+
+LOG_FILE = "exercise_log.txt"
+
+def log_exercise():
+    exercise_type = input("Enter exercise type: ")
+    
+    try:
+        duration = float(input("Enter the duration in minutes: "))
+        cal_per_min = float(input("Enter calories burned per minute: "))
+    except ValueError:
+        print("Pleader enter numbers for duration and calories")
+        return
+    
+    total_calories = duration * cal_per_min
+    today = date.today().isoformat
+    
+    with open(LOG_FILE, "a") as f:
+        f.write(f"{today} | {exercise_type} | {duration} minutes | {total_calories} calories\n")
+        
+    print(f"Exercise logged successfully for {today}. ")
+
+
+
+
 
 def main ():
     while True:
@@ -17,7 +42,7 @@ def main ():
         choice = input("Enter choice: ")
         
         if choice == "1":
-            print("You picked log excercise")
+            log_exercise()
         elif choice == "2":
             print("You picked view logged excercises")
         elif choice == "3": 
@@ -29,5 +54,12 @@ def main ():
             break
         else:
             print("Invalid Choice")
+
+
+
+
+
+
+
         
 main()

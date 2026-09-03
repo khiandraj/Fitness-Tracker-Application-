@@ -1,0 +1,1 @@
+<built-in method isoformat of datetime.date object at 0x1000c3390> | running | 10.0 minutes | 300.0 calories
