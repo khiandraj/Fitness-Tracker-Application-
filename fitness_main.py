@@ -2,13 +2,13 @@
 # CSCI 471 - Python Programming Assignment: Fitness Tracker Application
 
 
-
-
+#Used for the date when the user inputs it 
 from datetime import date
 
 LOG_FILE = "exercise_log.txt"
 GOAL_FILE = "weekly_goal.txt"
 
+# Logging an exercise
 def log_exercise():
     exercise_type = input("Enter exercise type: ")
     
@@ -27,13 +27,13 @@ def log_exercise():
         
     print(f"Exercise logged successfully for {today}. ")
 
-
+# Viewing logged exercises from user inputed date
 def view_exercise():
     target_date = input("Enter date to view (YYYY - MM - DD): ")
     try:
         with open(LOG_FILE, "r") as f:
             lines = f.readlines()
-    except FileNotFoundError:
+    except FileNotFoundError: #User has not logged anything yet
         print("No exercises logged yet.")
         return
     
@@ -46,7 +46,7 @@ def view_exercise():
     if not found:
         print(f"No exercises found for {target_date} .")
         
-        
+# Setting a goal         
 def set_goal():
     try:
         goal = float(input("Enter your weekly calorie-burning goal: "))
@@ -54,12 +54,12 @@ def set_goal():
         print("Please enter a number: ")
         return
     
-    with open(GOAL_FILE, "w") as f:
+    with open(GOAL_FILE, "w") as f: #Used "w" because I only want the latest goal
         f.write(str(goal))
         
     print(f"Weekly goal set to {goal} calories. ")
     
-    
+# Tracking progress    
 def track_progress():
     try:
         with open(GOAL_FILE, "r") as f:
@@ -134,10 +134,4 @@ def main ():
             print("Invalid Choice")
 
 
-
-
-
-
-
-        
 main()
